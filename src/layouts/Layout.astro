@@ -10,7 +10,7 @@ const { title } = Astro.props;
    ── La vista previa al compartir el link ──────────────────────
    La imagen va en 1200x630, que es la franja que usa WhatsApp. Si se
    pone una imagen vertical, WhatsApp le corta arriba y abajo y se ve un
-   pedazo del medio. miniatura-whatsapp.jpg sale de miniatura.png (ya
+   pedazo del medio. miniatura-whatsapp.jpg es la imagen de la portada (ya
    hecha en 1200x630), comprimida a JPG para que cargue rápido.
 
    La ruta se arma con Astro.site (la dirección del config): WhatsApp no
@@ -22,7 +22,7 @@ const { title } = Astro.props;
 */
 // El ?v= se sube cada vez que cambia la imagen: WhatsApp guarda la vieja
 // por la dirección y así la toma como nueva.
-const miniatura = new URL('/imagenes/miniatura-whatsapp.jpg?v=2', Astro.site).href;
+const miniatura = new URL('/imagenes/miniatura-whatsapp.jpg?v=3', Astro.site).href;
 const paginaActual = new URL(Astro.url.pathname, Astro.site).href;
 const tituloPreview = 'Carlos & Jhoselin';
 ---
