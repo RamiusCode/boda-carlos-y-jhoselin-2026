@@ -1,0 +1,101 @@
+---
+// src/components/CodigoVestimenta.astro
+// "Código de Vestimenta" en Great Vibes bordó, la etiqueta en Cinzel y la
+// pareja vestida de gala (codigo.png). Nada más.
+
+// ── DATOS EDITABLES ───────────────────────────────────────────
+const titulo = "Código de Vestimenta";
+const etiqueta = "Etiqueta Formal";
+// ──────────────────────────────────────────────────────────────
+---
+
+<section id="codigo-vestimenta" class="seccion">
+    <p class="titulo font-great-vibes">{titulo}</p>
+    <p class="etiqueta">{etiqueta}</p>
+
+    <img
+        src="/imagenes/codigo.png"
+        alt="Pareja vestida de gala: ella con vestido largo, él de traje"
+        width="579"
+        height="991"
+        class="pareja"
+    />
+</section>
+
+<style>
+    .seccion {
+        /* Las letras se miden contra el ancho de la sección */
+        container-type: inline-size;
+        position: relative;
+        width: 100%;
+        padding: 8cqw 6cqw 10cqw;
+        text-align: center;
+    }
+
+    .titulo {
+        margin: 0;
+        color: #7a2335;
+        font-size: 13cqw;
+        line-height: 1.15;
+    }
+
+    .etiqueta {
+        margin: 0.6cqw 0 0;
+        font-family: "Cinzel", serif;
+        font-size: 5cqw;
+        letter-spacing: 0.03em;
+        color: #6e5a52;
+    }
+
+    .pareja {
+        display: block;
+        width: 30cqw;
+        height: auto;
+        margin: 6cqw auto 0;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const seccion = document.getElementById("codigo-vestimenta");
+        if (!seccion) return;
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+            return;
+
+        const textos = seccion.querySelectorAll(".titulo, .etiqueta");
+        const pareja = seccion.querySelector(".pareja");
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: seccion,
+                start: "top 80%",
+                toggleActions: "play none none reset",
+            },
+        })
+            .fromTo(
+                textos,
+                { opacity: 0, y: 14 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.9,
+                    stagger: 0.18,
+                    ease: "power2.out",
+                },
+            )
+            .fromTo(
+                pareja,
+                { opacity: 0, y: 24 },
+                { opacity: 1, y: 0, duration: 1.1, ease: "power3.out" },
+                0.5,
+            );
+    });
+</script>

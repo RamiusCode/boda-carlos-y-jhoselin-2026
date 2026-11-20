@@ -1,0 +1,29 @@
+---
+// src/components/TercerDia.astro
+// El tercer día: también en el salón. El diseño está en DiaSalon.astro.
+import DiaSalon from "./DiaSalon.astro";
+
+// ── DATOS EDITABLES ───────────────────────────────────────────
+const titulo = "Tercer día";
+const fecha = "Domingo 29 de noviembre";
+const intro = "Así mismo los novios te invitan";
+const lugar = "Salón Machu Molle";
+const lineas = ["Maica Central 7 ½"];
+const hora = "Hora: 19:00";
+const nota = "En el mismo salón de eventos";
+// Es el mismo salón de la recepción del primer día (RecepcionSocial.astro)
+const mapa = "https://maps.app.goo.gl/eSewPCSgWq3MCVJq9?g_st=iw";
+// ──────────────────────────────────────────────────────────────
+---
+
+<DiaSalon
+    titulo={titulo}
+    fecha={fecha}
+    intro={intro}
+    lugar={lugar}
+    lineas={lineas}
+    hora={hora}
+    nota={nota}
+    mapa={mapa}
+    letraLugar="cinzel"
+/>

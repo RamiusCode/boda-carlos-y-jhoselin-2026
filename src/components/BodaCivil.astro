@@ -1,0 +1,22 @@
+---
+// src/components/BodaCivil.astro
+// El primer día: la boda civil (viernes), solo en familia. No lleva
+// dirección, hora ni mapa: es el encabezado del día y una tarjeta con los
+// anillos y "Boda Civil". El diseño está en DiaSalon.astro.
+import DiaSalon from "./DiaSalon.astro";
+
+// ── DATOS EDITABLES ───────────────────────────────────────────
+const titulo = "Primer día";
+const fecha = "Viernes 27 de noviembre";
+const lugar = "Boda Civil";
+const icono = "/iconos/Anillos.png";
+// ──────────────────────────────────────────────────────────────
+---
+
+<DiaSalon
+    titulo={titulo}
+    fecha={fecha}
+    icono={icono}
+    lugar={lugar}
+    compacto
+/>
