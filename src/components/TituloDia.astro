@@ -8,14 +8,15 @@
 // rombo y la fecha aparece suave.
 
 export interface Props {
-    titulo: string;
+    // Vacío, no se dibuja el título y quedan solo el adorno y la fecha
+    titulo?: string;
     fecha: string;
 }
-const { titulo, fecha } = Astro.props;
+const { titulo = "", fecha } = Astro.props;
 ---
 
 <section class="encabezado-dia">
-    <p class="titulo font-great-vibes">{titulo}</p>
+    {titulo && <p class="titulo font-great-vibes">{titulo}</p>}
 
     <!-- Adorno: dos filetes que salen de un rombo -->
     <div class="adorno" aria-hidden="true">
@@ -112,22 +113,29 @@ const { titulo, fecha } = Astro.props;
         document
             .querySelectorAll<HTMLElement>(".encabezado-dia")
             .forEach((bloque) => {
-                gsap.timeline({
+                const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: bloque,
                         start: "top 85%",
                         toggleActions: "play none none reset",
                     },
-                })
-                    .fromTo(
-                        bloque.querySelector(".titulo"),
+                });
+
+                // Sin título (la boda civil) se salta la escritura a mano
+                const titulo = bloque.querySelector(".titulo");
+                if (titulo) {
+                    tl.fromTo(
+                        titulo,
                         { clipPath: tapado },
                         {
                             clipPath: escrito,
                             duration: 1.2,
                             ease: "power1.inOut",
                         },
-                    )
+                    );
+                }
+
+                tl
                     .fromTo(
                         bloque.querySelector(".adorno-rombo"),
                         { opacity: 0, scale: 0, rotate: -45 },

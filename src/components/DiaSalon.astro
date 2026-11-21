@@ -12,7 +12,8 @@
 import TituloDia from "./TituloDia.astro";
 
 export interface Props {
-    titulo: string;
+    // Vacío, el encabezado del día no lleva título (solo adorno y fecha)
+    titulo?: string;
     fecha: string;
     // Vacía, no se dibuja la frase de entrada
     intro?: string;
@@ -34,7 +35,7 @@ export interface Props {
     letraLugar?: "cursiva" | "cinzel";
 }
 const {
-    titulo,
+    titulo = "",
     fecha,
     intro = "",
     icono = "",
