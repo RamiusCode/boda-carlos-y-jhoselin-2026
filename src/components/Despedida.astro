@@ -22,7 +22,7 @@ import { enlaceConfirmar } from "../scripts/mensajeConfirmar";
 
 // ── DATOS EDITABLES ───────────────────────────────────────────
 const titulo = "Confirmar Asistencia";
-const pedido = ["Por favor confirma antes del", "10 de noviembre"];
+const pedido = ["Confirma tu asistencia"];
 const frase = "Será un honor contar con tu presencia";
 const esperamos = "¡Te esperamos!";
 const novios = "Carlos & Jhoselin";
@@ -73,8 +73,7 @@ const pase =
 <section id="despedida" class="seccion">
     <p class="titulo font-great-vibes">{titulo}</p>
     <p class="pedido">
-        <span>{pedido[0]}</span>
-        <span>{pedido[1]}</span>
+        {pedido.map((linea) => <span>{linea}</span>)}
     </p>
 
     <div id="grupo-despedida" class="grupo">
